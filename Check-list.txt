@@ -1,0 +1,22 @@
+#2.2.3. Practice. Check-list
+
+General checks:
+- Greeting is displayed as a first first after running the app
+- Instruction is displayed as a second section after running the app
+- "Enter first number" input is presented
+- User can enter first number
+- "Enter operator" input is presented at the 2nd step after entering the 1st number
+- "Enter second number" input is presented after entering operator at 2nd step
+- The result line is displayed as a 5th step
+- User can exit at any step of the calculator
+
+Inputs validation:
+-
+
+Sum checks:
+
+Deduction checks:
+
+Devision checks:
+
+Multiplying checks:
