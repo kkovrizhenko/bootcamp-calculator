@@ -76,10 +76,9 @@ def app_exit():
     sys.exit("Adios amigo!")
 
 
-def start():
+def start() -> object:
     greet_at_start()
     instruction()
     inputs()
-
 
 start()
