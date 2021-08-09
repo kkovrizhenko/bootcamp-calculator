@@ -1,6 +1,5 @@
 # This is a “Console calculator" for a Python AQA Bootcamp task
 import sys
-import math
 
 valid_operators = ['+', '-', '/', '*']
 
