@@ -39,7 +39,7 @@ def validate_operator(operator: str) -> bool:
     return False
 
 
-def handle_input(phrase: str, validator: Callable[[str], bool]) -> T:
+def handle_input(phrase: str, validator: Callable[[str], bool]) -> str:
     """
     Wait for user's input, exit app or validate and return input
 
