@@ -1,9 +1,8 @@
 # This is a “Console calculator" for a Python AQA Bootcamp task
 import sys
-from typing import TypeVar, Callable
+from typing import Callable
 
 valid_operators = ['+', '-', '/', '*']
-T = TypeVar('T', int, float)
 
 
 def greet_at_start() -> None:
@@ -21,7 +20,7 @@ def instruction() -> None:
           "\n - Number can be a float number (6.66)")
 
 
-def validate_number(num: any) -> bool:
+def validate_number(num: str) -> bool:
     """Validate value for being a number and print a massage if the validation failed."""
     try:
         float(num)
@@ -31,7 +30,7 @@ def validate_number(num: any) -> bool:
         return False
 
 
-def validate_operator(operator: any) -> bool:
+def validate_operator(operator: str) -> bool:
     """Validate value for being in a list of operators and print a massage if the validation failed."""
     if operator in valid_operators:
         return True
@@ -40,7 +39,7 @@ def validate_operator(operator: any) -> bool:
     return False
 
 
-def handle_input(phrase: str, validator: Callable[[any], bool]) -> T:
+def handle_input(phrase: str, validator: Callable[[str], bool]) -> T:
     """
     Wait for user's input, exit app or validate and return input
 
@@ -68,7 +67,14 @@ def read_user_inputs() -> None:
     read_user_inputs()
 
 
-def count(a: T, b: T, operator: str) -> None:
+messages_dict = {
+    '+': "The sum is: ",
+    '-': "The result of negation is: ",
+    '/': "The result of division: ",
+    '*': "The result of multiplying: "
+}
+
+def count(a: str, b: str, operator: str) -> None:
     """
     Perform math operation based on user inputs and print result
 
@@ -76,26 +82,14 @@ def count(a: T, b: T, operator: str) -> None:
     :param b: second number
     :param operator: math operator
     """
-    first_num = float(a)
-    second_num = float(b)
+    calculation = f"{a}{operator}{b}"
 
-    if operator == '+':
-        print("The sum is :", do_math(round(first_num + second_num, 3)))
-    elif operator == '-':
-        print("The result of negation is: ", do_math(round(first_num - second_num, 3)))
-    elif operator == '/':
-        if second_num != float(0):
-            print("The result of division: ", do_math(round(first_num / second_num, 3)))
-        else:
-            print("Hold you horses, you can't divide by 0! Try again!")
-            read_user_inputs()
-    elif operator == '*':
-        print("The result of multiplying: ", do_math(round(first_num * second_num, 3)))
-
-
-def do_math(num: T) -> T:
-    """Check if the number is integer and convert it"""
-    return int(num) if num%1 == 0 else num
+    try:
+        result = round(eval(calculation), 3)
+        print(messages_dict[operator], result)
+    except ZeroDivisionError:
+        print("Hold you horses, you can't divide by 0! Try again!")
+        read_user_inputs()
 
 
 def app_exit() -> None:
